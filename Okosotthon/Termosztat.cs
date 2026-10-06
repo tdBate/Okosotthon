@@ -6,25 +6,40 @@ namespace Okosotthon
 {
     public class Termosztat : OkosEszkoz
     {
+        private double jelenlegiHomerseklet;
+        private double celHomerseklet;
+        
+        public double JelenlegiHomerseklet
+        {
+            get => jelenlegiHomerseklet;
+            private set=> jelenlegiHomerseklet = value;
+        }
+        
+        public double CelHomerseklet
+        {
+            get => celHomerseklet;
+            private set => celHomerseklet = value;
+        }
+        
         public Termosztat(string azonosito, string nev, double celHomerseklet)
         : base(azonosito, nev)
         {
-            throw new NotImplementedException();
+            this.celHomerseklet = celHomerseklet;
         }
 
         public override void ParancsVegrehajtasa(string parancs)
         {
-            throw new NotImplementedException();
+            this.CelHomerseklet = Convert.ToInt32(parancs.Substring(parancs.IndexOf("#")));
         }
 
         public override string AllapotJelentes()
         {
-            throw new NotImplementedException();
+            return $"Jelenlegi hőmérséklet: {this.jelenlegiHomerseklet} ,Célhőmérséklet: {this.celHomerseklet}";
         }
 
         protected override bool OnTesztFuttatasa()
         {
-            throw new NotImplementedException();
+            return (this.CelHomerseklet > 5 && this.celHomerseklet < 35);
         }
 
     }
