@@ -17,12 +17,12 @@ public class OkosotthonTesztek
         this.kozpont = new OkosotthonKozpont();
     }
 
-    //[Test]
-    //public void Kezdetben_MindenEszkoz_Offline()
-    //{
-    //    Assert.That(this.termosztat.OnlineE, Is.False);
-    //    Assert.That(this.okosZar.OnlineE, Is.False);
-    //}
+    [Test]
+    public void Kezdetben_MindenEszkoz_Offline()
+    {
+        Assert.That(this.termosztat.OnlineE, Is.False);
+        Assert.That(this.okosZar.OnlineE, Is.False);
+    }
 
     //[Test]
     //public void Csatlakozas_OnlineAllapotraValt()
