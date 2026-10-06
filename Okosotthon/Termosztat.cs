@@ -29,7 +29,14 @@ namespace Okosotthon
 
         public override void ParancsVegrehajtasa(string parancs)
         {
-            this.CelHomerseklet = Convert.ToInt32(parancs.Substring(parancs.IndexOf("#")));
+            try
+            {
+                this.CelHomerseklet = Convert.ToDouble(parancs.Substring(parancs.IndexOf("#")).Replace('.',','));
+            }
+            catch
+            {
+            }
+
         }
 
         public override string AllapotJelentes()
