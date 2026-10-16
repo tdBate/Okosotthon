@@ -4,35 +4,55 @@ using System.Text;
 
 namespace Okosotthon
 {
-    public class OkosZar: OkosEszkoz
+    public class OkosZar : OkosEszkoz
     {
-        public OkosZar(string azonosito, string nev, string pinKod)
-        : base(azonosito, nev)
+        public bool zartE = true;
+        
+        public bool ZartE
         {
-            throw new NotImplementedException();
+            get => zartE;
+            private set=> zartE = value;
+        }
+        
+        private string pinKod;
+
+        public OkosZar(string azonosito, string nev, string pinKod)
+            : base(azonosito, nev)
+        {
+            this.pinKod = pinKod;
         }
 
         public override void ParancsVegrehajtasa(string parancs)
         {
-            throw new NotImplementedException();
+            if (parancs.StartsWith("NYITAS:"))
+            {
+                string megadottPin = parancs.Substring(7);
+                if (megadottPin == this.pinKod)
+                {
+                    this.zartE = false;
+                }
+            }
+            else if (parancs == "ZARAS")
+            {
+                this.zartE = true;
+            }
         }
-
 
         public override string AllapotJelentes()
         {
-            throw new NotImplementedException();
+            return this.zartE ? "ZÁRVA" : "NYITVA";
         }
 
         protected override bool OnTesztFuttatasa()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override void GyariBeallitasokVisszaallitasa()
         {
-            throw new NotImplementedException();
+            base.GyariBeallitasokVisszaallitasa();
+            this.pinKod = "0000";
+            this.zartE = true;
         }
-
-
     }
 }
