@@ -31,7 +31,7 @@ namespace Okosotthon
         {
             try
             {
-                this.CelHomerseklet = Convert.ToDouble(parancs.Substring(parancs.IndexOf("#")).Replace('.',','));
+                this.CelHomerseklet = Convert.ToDouble(parancs.Substring(parancs.IndexOf(":")+1));
             }
             catch
             {
