@@ -14,7 +14,7 @@ public class OkosotthonTesztek
     {
         this.termosztat = new Termosztat("TH-01", "Nappali Termosztát", 22.0);
         this.okosZar = new OkosZar("LK-01", "Bejárati Zár", "1234");
-        //this.kozpont = new OkosotthonKozpont();
+        this.kozpont = new OkosotthonKozpont();
     }
 
     [Test]
@@ -106,31 +106,31 @@ public class OkosotthonTesztek
         Assert.That(this.okosZar.ZartE, Is.False);
     }
 
-    //[Test]
-    //public void Kozpont_OsszesCsatlakoztatasa_MindenEszkoztOnlineRendreAllit()
-    //{
-    //    this.kozpont.EszkozHozzaadasa(this.termosztat);
-    //    this.kozpont.EszkozHozzaadasa(this.okosZar);
+    [Test]
+    public void Kozpont_OsszesCsatlakoztatasa_MindenEszkoztOnlineRendreAllit()
+    {
+        this.kozpont.EszkozHozzaadasa(this.termosztat);
+        this.kozpont.EszkozHozzaadasa(this.okosZar);
 
-    //    this.kozpont.OsszesCsatlakoztatasa();
+        this.kozpont.OsszesCsatlakoztatasa();
 
-    //    Assert.That(this.termosztat.OnlineE, Is.True);
-    //    Assert.That(this.okosZar.OnlineE, Is.True);
-    //}
+        Assert.That(this.termosztat.OnlineE, Is.True);
+        Assert.That(this.okosZar.OnlineE, Is.True);
+    }
 
-    //[Test]
-    //public void Kozpont_DiagnosztikaFuttatasa_HelyesSikeresSzamotAdVissza()
-    //{
-    //    this.kozpont.EszkozHozzaadasa(this.termosztat);
-    //    this.kozpont.EszkozHozzaadasa(this.okosZar);
+    [Test]
+    public void Kozpont_DiagnosztikaFuttatasa_HelyesSikeresSzamotAdVissza()
+    {
+        this.kozpont.EszkozHozzaadasa(this.termosztat);
+        this.kozpont.EszkozHozzaadasa(this.okosZar);
 
-    //    // Még offline állapotban van minden -> 0 sikeres diagnosztika
-    //    int sikeresOffline = this.kozpont.RendszerDiagnosztikaFuttatasa();
-    //    Assert.That(sikeresOffline, Is.EqualTo(0));
+        // Még offline állapotban van minden -> 0 sikeres diagnosztika
+        int sikeresOffline = this.kozpont.RendszerDiagnosztikaFuttatasa();
+        Assert.That(sikeresOffline, Is.EqualTo(0));
 
-    //    // Csatlakoztatás után mindkét eszköz sikeresen átmegy a teszten
-    //    this.kozpont.OsszesCsatlakoztatasa();
-    //    int sikeresOnline = this.kozpont.RendszerDiagnosztikaFuttatasa();
-    //    Assert.That(sikeresOnline, Is.EqualTo(2));
-    //}
+        // Csatlakoztatás után mindkét eszköz sikeresen átmegy a teszten
+        this.kozpont.OsszesCsatlakoztatasa();
+        int sikeresOnline = this.kozpont.RendszerDiagnosztikaFuttatasa();
+        Assert.That(sikeresOnline, Is.EqualTo(2));
+    }
 }
